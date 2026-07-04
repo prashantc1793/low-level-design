@@ -5,15 +5,18 @@ import org.sample.vendingmachine.model.VendingMachine;
 import org.sample.vendingmachine.payment.Payment;
 import org.sample.vendingmachine.payment.PaymentFactory;
 import org.sample.vendingmachine.payment.PaymentStrategy;
+import org.sample.vendingmachine.service.PricingService;
 
 public class ItemSelectedState implements MachineState {
     private final PaymentFactory paymentFactory;
     private final PaymentStrategy paymentStrategy;
+    private final PricingService pricingService;
 
 
-    public ItemSelectedState(PaymentFactory paymentFactory, PaymentStrategy paymentStrategy) {
+    public ItemSelectedState(PaymentFactory paymentFactory, PaymentStrategy paymentStrategy, PricingService pricingService) {
         this.paymentFactory = paymentFactory;
         this.paymentStrategy = paymentStrategy;
+        this.pricingService = pricingService;
     }
 
     @Override
@@ -23,9 +26,10 @@ public class ItemSelectedState implements MachineState {
 
     @Override
     public String pay(VendingMachine machine, String paymentMode) {
+        double totalPrice = pricingService.calculatePrice(machine.getSelectedItem(), machine.getSelectedQuantity());
         Payment payment = paymentFactory.getFactory(PaymentMode.valueOf(paymentMode.toUpperCase()));
         paymentStrategy.setPayment(payment);
-        boolean pay = paymentStrategy.payment(machine.getSelectedItem());
+        boolean pay = paymentStrategy.payment(totalPrice, machine.getSelectedItem());
 
         if(!pay) {
             machine.setCurrentState(new IdleState());

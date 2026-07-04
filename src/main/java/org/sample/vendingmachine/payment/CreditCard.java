@@ -6,12 +6,12 @@ public class CreditCard implements Payment {
     double creditLimit = 1000;
 
     @Override
-    public boolean pay(Item item) {
-        if(item.getPrice() > creditLimit) {
+    public boolean pay(double totalPrice, Item item) {
+        if(totalPrice > creditLimit) {
             System.out.println("Insufficient credit limit in your credit card...");
             return false;
         }
-        creditLimit = creditLimit - item.getPrice();
+        creditLimit = creditLimit - totalPrice;
         System.out.println("Payment successfully made via your Credit card");
         return true;
     }

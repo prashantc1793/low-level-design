@@ -5,8 +5,8 @@ import org.sample.vendingmachine.model.Item;
 public class PaymentStrategy {
     private Payment payment;
 
-    public boolean payment(Item item) {
-        return payment.pay(item);
+    public boolean payment(double totalPrice, Item item) {
+        return payment.pay(totalPrice, item);
     }
 
     public void setPayment(Payment payment) {
