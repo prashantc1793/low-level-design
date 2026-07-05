@@ -51,7 +51,7 @@ public class ParkingSpotService {
         parkingSpot.setStatus(Status.OCCUPIED);
         DayOfWeek dayOfWeek = LocalDate.now().getDayOfWeek();
         parkingSpot.setParkingDay(ParkingDay.from(dayOfWeek));
-        parkingSpot.setParkedAt(LocalDate.now().atTime(LocalTime.MIDNIGHT));
+        parkingSpot.setParkedAt(LocalDate.now().atStartOfDay());
         vehicle.setParkingSpot(parkingSpot);
         return parkingSpot.getParkingNumber();
     }
