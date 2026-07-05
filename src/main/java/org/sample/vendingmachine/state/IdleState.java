@@ -13,7 +13,7 @@ public class IdleState implements MachineState{
                 }
                 machine.setSelectedItem(item);
                 machine.setSelectedQuantity(quantity);
-                machine.setCurrentState(new ItemSelectedState());
+                //machine.setCurrentState(new ItemSelectedState());
                 return "Item Selected";
             }
         }
