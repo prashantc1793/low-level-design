@@ -1,6 +1,5 @@
 package org.sample.parkinglot.service;
 
-import org.sample.parkinglot.enums.ParkingDay;
 import org.sample.parkinglot.enums.PaymentMode;
 import org.sample.parkinglot.enums.VehicleType;
 import org.sample.parkinglot.model.ParkingSpot;
@@ -14,8 +13,6 @@ import org.sample.parkinglot.payment.PaymentStrategy;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.UUID;
-
-import static org.sample.parkinglot.enums.ParkingDay.WEEK_END;
 
 public class ParkingService {
     private final ParkingSpotService parkingSpotService;
