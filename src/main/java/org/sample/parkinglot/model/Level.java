@@ -11,10 +11,6 @@ public class Level {
         this.parkingSpotList = parkingSpotList;
     }
 
-    public int getLevel() {
-        return level;
-    }
-
     public List<ParkingSpot> getParkingSpotList() {
         return parkingSpotList;
     }
